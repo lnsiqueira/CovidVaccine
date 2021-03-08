@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CovidVaccine.Pages.SettingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.Content>
+        <StackLayout Margin="20">
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Xamarin application, example of the use of some components:" />
+            <Label Text="Xamarin 5.0" />
+            <Label Text="Toolkit: Tabview / MediaElement" />
+            <Label Text="SharedTransitions" />
+            <Label Text="Sharpnado" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Vaccine data in some countries:" />
+
+            <Image
+                Margin="5"
+                Aspect="AspectFit"
+                HeightRequest="40"
+                Source="Brazil2.png"
+                WidthRequest="40" />
+
+            <Image
+                Margin="5"
+                Aspect="AspectFit"
+                HeightRequest="40"
+                Source="Israel.png"
+                WidthRequest="40" />
+
+            <Image
+                Margin="5"
+                Aspect="AspectFit"
+                HeightRequest="40"
+                Source="Italy.png"
+                WidthRequest="40" />
+
+            <Image
+                Margin="5"
+                Aspect="AspectFit"
+                HeightRequest="40"
+                Source="Usa.png"
+                WidthRequest="40" />
+
+            <Image
+                Margin="5"
+                Aspect="AspectFit"
+                HeightRequest="40"
+                Source="England.png"
+                WidthRequest="40" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

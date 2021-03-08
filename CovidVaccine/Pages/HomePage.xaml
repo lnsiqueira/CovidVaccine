@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CovidVaccine.Pages.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:CovidVaccine.Models"
+    xmlns:sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+    xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+    xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLight}}"
+    IsClippedToBounds="False">
+    <ContentView.Resources>
+
+        <DataTemplate x:Key="FeaturedProduct" x:DataType="models:Countries">
+            <Grid
+                BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLight}}"
+                ColumnDefinitions="284"
+                IsClippedToBounds="False"
+                RowDefinitions="120,40,142"
+                RowSpacing="0"
+                VerticalOptions="Start">
+
+
+                <sh:Shadows
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Margin="0,-20,0,0"
+                    CornerRadius="24"
+                    IsClippedToBounds="False"
+                    Shades="{sh:SingleShade Offset='0, 30',
+                                            BlurRadius=60,
+                                            Opacity=0.20,
+                                            Color='#8A959E'}">
+                    <BoxView
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource NeutralDark},
+                                                          Light={StaticResource White}}"
+                        CornerRadius="24" />
+                </sh:Shadows>
+
+                <!--  VACCINATED CARDS  -->
+                <Grid
+                    Grid.Row="2"
+                    Margin="12,-15,0,0"
+                    ColumnDefinitions="*"
+                    RowDefinitions="24,24,*"
+                    VerticalOptions="Start">
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.ColumnSpan="3"
+                        FontFamily="DMSansBold"
+                        FontSize="18">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="People Vaccinated:" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        FontSize="18"
+                        TextColor="{StaticResource TextSecondaryColor_Light}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding peopleVaccinated, StringFormat=' {0:N0} '}" TextColor="{StaticResource NeutralSecondary}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        FontSize="18"
+                        Text="People Fully:"
+                        VerticalOptions="Start" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        FontSize="18"
+                        TextColor="{StaticResource TextSecondaryColor_Light}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding peopleFullyVaccinated, StringFormat=' {0:N0} '}" TextColor="{StaticResource NeutralSecondary}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Frame
+                    Grid.Row="0"
+                    Padding="0"
+                    CornerRadius="180"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    WidthRequest="120">
+                    <Image
+                        Aspect="Fill"
+                        HorizontalOptions="Center"
+                        Source="{Binding ProductImage}"
+                        VerticalOptions="Center" />
+                </Frame>
+
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PopularProduct" x:DataType="models:Countries">
+            <sh:Shadows
+                Margin="0,20,0,0"
+                CornerRadius="24"
+                IsClippedToBounds="False"
+                Shades="{sh:SingleShade Offset='0, 40',
+                                        BlurRadius=60,
+                                        Opacity=0.20,
+                                        Color='#8A959E'}">
+                <Grid ColumnDefinitions="110,180" RowDefinitions="140">
+
+                    <BoxView
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource NeutralDark},
+                                                          Light={StaticResource White}}"
+                        CornerRadius="24" />
+                    <StackLayout
+                        Grid.Column="1"
+                        Orientation="Vertical"
+                        VerticalOptions="Center">
+                        <Label FontAttributes="Bold" FontSize="20">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding population, StringFormat=' {0:N0}'}" TextColor="{StaticResource NeutralSecondary}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label FontSize="18">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        FontSize="Small"
+                                        Text="Vaccinated % : "
+                                        TextColor="{StaticResource NeutralSecondary}" />
+                                    <Span
+                                        FontAttributes="Bold"
+                                        FontSize="Small"
+                                        Text="{Binding perPop}"
+                                        TextColor="{StaticResource NeutralSecondary}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label
+                            FontSize="10"
+                            Text="{Binding vaccineName}"
+                            TextColor="{StaticResource TextSecondaryColor_Light}" />
+
+                    </StackLayout>
+
+                    <Image
+                        Grid.Column="0"
+                        Margin="15"
+                        sharedTransitions:Transition.Group="{Binding Name}"
+                        sharedTransitions:Transition.Name="CatTransition"
+                        Aspect="AspectFit"
+                        HorizontalOptions="Center"
+                        Source="{Binding ProductImage}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </sh:Shadows>
+        </DataTemplate>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <ScrollView>
+            <Grid
+                Margin="15"
+                IsClippedToBounds="False"
+                RowDefinitions="184,340,44,240">
+
+                <!--  VIDEO  -->
+                <ScrollView
+                    Grid.Row="0"
+                    Margin="-0,0"
+                    HorizontalScrollBarVisibility="Never"
+                    IsClippedToBounds="False"
+                    Orientation="Horizontal"
+                    VerticalScrollBarVisibility="Never">
+                    <toolkit:MediaElement
+                        Grid.Row="1"
+                        Margin="-20"
+                        AutoPlay="True"
+                        IsLooping="True"
+                        Opacity="0.2"
+                        ShowsPlaybackControls="False"
+                        Source="ms-appx:///Coronavirus.mp4" />
+                </ScrollView>
+
+                <!--  PRODUCT CARDS  -->
+                <ScrollView
+                    Grid.Row="1"
+                    Margin="-15,0,-15,0"
+                    HorizontalScrollBarVisibility="Never"
+                    IsClippedToBounds="False"
+                    Orientation="Horizontal">
+
+                    <StackLayout
+                        Padding="15,0,0,0"
+                        BindableLayout.ItemTemplate="{StaticResource FeaturedProduct}"
+                        BindableLayout.ItemsSource="{Binding Countries}"
+                        IsClippedToBounds="False"
+                        Orientation="Horizontal"
+                        Spacing="20" />
+                </ScrollView>
+
+                <!--  POPULATION CARD  -->
+                <Label
+                    Grid.Row="2"
+                    Margin="0,-20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text=" Population x Vaccines(%)" />
+                <ScrollView
+                    Grid.Row="3"
+                    Margin="-15,-40,-15,0"
+                    HorizontalScrollBarVisibility="Never"
+                    IsClippedToBounds="False"
+                    Orientation="Horizontal">
+                    <StackLayout
+                        Padding="15,0,0,0"
+                        BindableLayout.ItemTemplate="{StaticResource PopularProduct}"
+                        BindableLayout.ItemsSource="{Binding PopularCountries}"
+                        Orientation="Horizontal"
+                        Spacing="20" />
+                </ScrollView>
+            </Grid>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

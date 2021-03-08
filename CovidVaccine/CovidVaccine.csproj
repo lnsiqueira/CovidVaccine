@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Common\Fonts\DMSans-Bold.ttf" />
+    <None Remove="Common\Fonts\DMSans-Regular.ttf" />
+    <None Remove="Common\Fonts\fa-solid-900.ttf" />
+    <None Remove="Common\Fonts\ProductSans-Regular.ttf" />
+    <None Remove="Common\Fonts\RobotoMono-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Common\Fonts\fa-solid-900.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.2" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
+    <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Common\Fonts\DMSans-Bold.ttf" />
+    <Resource Include="Common\Fonts\DMSans-Regular.ttf" />
+    <Resource Include="Common\Fonts\ProductSans-Regular.ttf" />
+    <Resource Include="Common\Fonts\RobotoMono-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Common\Styles\DefaultTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SettingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
